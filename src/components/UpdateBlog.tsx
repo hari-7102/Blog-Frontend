@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {  useNavigate , useLocation } from "react-router-dom";
 import apiClient from '../apiClient/apiClient';
+import Navbar from "./Navbar";
 // Define Blog type
 interface Blog {
   _id?: string;
@@ -70,10 +71,13 @@ const id = location.state
   }
 
   return (
+    <>
+
+    <Navbar/>
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          ✏️ Update Blog
+          Update Blog
         </h2>
 
         <form onSubmit={handleUpdate} className="space-y-5">
@@ -112,6 +116,7 @@ const id = location.state
         <button onClick={() => navigate('/blog')}    className="px-5 py-2 mt-3 text-white bg-gray-700 rounded-xl">Back to Blog</button>
       </div>
     </div>
+    </>
   );
 };
 

@@ -62,7 +62,7 @@ const Blog = () => {
             <div className='flex justify-between items-start mb-4'>
               <h2 
                 onClick={() => navigate("/update", { state: item._id })} 
-                className='font-bold text-2xl cursor-pointer hover:text-blue-600 transition-colors flex-1 mr-4'
+                className='font-bold text-lg md:text-2xl cursor-pointer hover:text-blue-600 transition-colors flex-1 mr-4'
               >
                 {item.title}
               </h2>

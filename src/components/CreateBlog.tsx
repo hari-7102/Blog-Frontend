@@ -39,7 +39,7 @@ const CreateBlog = () => {
       <Navbar/>
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          📝 Create New Blog
+           Create New Blog
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -53,7 +53,7 @@ const CreateBlog = () => {
               placeholder="Enter blog title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
@@ -68,7 +68,7 @@ const CreateBlog = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full h-40 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             ></textarea>
           </div>

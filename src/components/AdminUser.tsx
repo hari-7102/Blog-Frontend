@@ -25,6 +25,18 @@ const AdminUser = () => {
     React.useEffect(() => {
         fetchUsers();
     } , []);
+
+    const handleDelete = async(id: string): Promise<void> => {
+        try{
+            console.log("id" ,id)
+            const response = await apiClient.delete(`/api/users/${id}`, {} )
+            console.log(response.data);
+            alert("Blog deleted successfully");
+            fetchUsers(); 
+        }catch(error) {
+            console.log(error)
+        }
+    }
   return (
     <div className='min-h-screen bg-gray-50'>
     <Navbar/>
@@ -40,13 +52,15 @@ const AdminUser = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 mt-3'>
                 {user && user.map((item: any) => (
                     <div  
-                        onClick={() => navigate('/userup', {state : item._id})} 
+                        
                         key={item._id} 
-                        className='border border-gray-200 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-all cursor-pointer hover:scale-105 hover:border-blue-500'
-                    >
-                        <h2 className='font-bold text-xl mb-3 text-gray-800'>{item.name}</h2>
+                        className='border border-gray-200 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-all  hover:scale-105 hover:border-blue-500'
+                    >   <div className='flex justify-between items-center'>
+                        <h2 className='font-bold text-xl mb-3 text-gray-800'>{item.username}</h2>
+                        <button onClick={() => handleDelete(item._id)}  className='px-3 py-1.5 bg-red-500 text-white rounded-md'>Delete</button>
+                        </div>
                         <p className='text-gray-600 mb-2'>
-                            <span className='font-semibold'>Email:</span> {item.email}
+                            <span  onClick={() => navigate('/userup', {state : item._id})}   className='font-semibold'>Email:</span> {item.email}
                         </p>
                         <p className='text-gray-600'>
                             <span className='font-semibold'>Role:</span> 
