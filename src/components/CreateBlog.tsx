@@ -1,4 +1,4 @@
-import React, { useState , FormEvent }   from "react";
+import React, { useState  }   from "react";
 import apiClient from '../apiClient/apiClient';
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -14,9 +14,9 @@ const CreateBlog = () => {
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [blog , setBlog] = useState<any[]>([]);
+  const [blog , setBlog] = useState<string[]>([]);
 
-  const handleSubmit = async(e: FormEvent<HTMLFormElement>):Promise<void> => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>):Promise<void> => {
     e.preventDefault();
 
 
@@ -35,8 +35,10 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Navbar/>
+    <>
+    <Navbar/>
+    <div className="flex justify-center items-start pt-16 h-screen bg-gray-100 overflow-hidden">
+      
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
            Create New Blog
@@ -87,6 +89,7 @@ const CreateBlog = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

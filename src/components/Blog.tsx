@@ -2,6 +2,21 @@ import React, { useEffect } from 'react'
 import apiClient from '../apiClient/apiClient';
 import Navbar from './Navbar';
 import { useNavigate  } from 'react-router-dom';
+
+
+
+
+interface BlogItem {
+  _id: string;
+  id?: string;
+  title: string;
+  content: string;
+  author: {
+    username: string;
+  };
+}
+
+
 const Blog = () => {
   const navigate = useNavigate();
   const [blog , setBlog] = React.useState([]);
@@ -57,7 +72,7 @@ const Blog = () => {
       
       
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 p-5'>
-        {blog && blog.map((item: any) => (
+        {blog && blog.map((item: BlogItem) => (
           <div key={item.id} className='border rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow'>
             <div className='flex justify-between items-start mb-4'>
               <h2 

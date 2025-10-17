@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Pen, Zap, Palette, Shield, Menu, X, ArrowRight, Github, Twitter, Linkedin } from 'lucide-react';
+import  { useState, useEffect } from 'react';
+import { Pen, Zap, Palette, Shield, Menu, X, ArrowRight, Github, Linkedin } from 'lucide-react';
+
+
+
 
 export default function BlogLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +16,7 @@ export default function BlogLanding() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id : string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -22,12 +25,15 @@ export default function BlogLanding() {
   };
 
   const navbarItems = [
-    { name: 'Home', id: 'home' },
-    { name: 'Features', id: 'features' },
-    { name: 'Demo', id: 'demo' },
-    { name: 'Contact', id: 'contact' },
+    // { name: 'Home', id: 'home' },
+    // { name: 'Features', id: 'features' },
+    // { name: 'Demo', id: 'demo' },
+    // { name: 'Contact', id: 'contact' },
     {
       name: 'Login', link : '/login'
+    },
+    {
+      name : 'Sign Up' ,link : '/register'
     }
   ]
 
@@ -70,9 +76,9 @@ export default function BlogLanding() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-600 via-gray-900 to-indigo-800 text-white">
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-purple-900/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
@@ -80,9 +86,9 @@ export default function BlogLanding() {
             </div>
             
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex space-x-8">
+            <ul className="hidden md:flex space-x-8 :">
               {navbarItems.map((item) => (
-                <a href={item.link}>
+                <a href={item.link} className='hover:scale-105 transform duration-75'>
                   <li>{item.name}</li>
                   </a>
               ))}
@@ -100,10 +106,10 @@ export default function BlogLanding() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4 space-y-16 h-screen overflow-y-auto bg-white/10 backdrop-blur-lg rounded-lg p-4">
-              {navbarItems.map((item, index) => (
+              {navbarItems.map((item) => (
                 <a href={item.link}>
                 <button
-                  key={item.index}
+                  
                   // onClick={() => scrollToSection(item)}
                   className="block w-full text-center py-2 hover:text-yellow-300 transition-colors capitalize"
                 >
@@ -203,23 +209,24 @@ export default function BlogLanding() {
             Built with ❤️ using modern web technologies
           </p>
           <div className="flex justify-center gap-6 mb-6">
-            <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
+            <a href="https://github.com/hari-7102" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
               <Github className="w-6 h-6" />
             </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
+            {/* <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
               <Twitter className="w-6 h-6" />
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
+            </a> */}
+            <a href="https://www.linkedin.com/in/hariharan-s-7b3298271/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="hover:text-yellow-300 transition-colors hover:scale-110 transform duration-300">
               <Linkedin className="w-6 h-6" />
             </a>
           </div>
           <p className="text-white/70 text-sm">
-            © 2025 BlogSpace. All rights reserved.
+            © 2025 Hariharan. All rights reserved.
           </p>
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>
+        {`
         @keyframes gradient {
           0%, 100% { background-position: 0% center; }
           50% { background-position: 100% center; }
@@ -228,7 +235,8 @@ export default function BlogLanding() {
           background-size: 200% auto;
           animation: gradient 3s ease-in-out infinite;
         }
-      `}</style>
+      `}
+      </style>
     </div>
   );
 }

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import apiClient from "../apiClient/apiClient";
+import Navbar from "./Navbar";
 
-interface UserResponse {
-  email: string;
-  role: string;
-}
+
 
 const AdminUpdate: React.FC = () => {
   const navigate = useNavigate();
@@ -64,6 +62,8 @@ const AdminUpdate: React.FC = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="p-6">
       <p className="text-2xl font-semibold mb-4">Update User Page</p>
 
@@ -105,6 +105,7 @@ const AdminUpdate: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

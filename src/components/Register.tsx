@@ -119,7 +119,9 @@ const Register = () => {
           >
             Register
           </button>
-
+            <button onClick={() => window.location.href='/'} className='w-full bg-black text-white rounded-md py-1.5  mt-2'>
+              Back 
+            </button>
           <p className="text-md text-center mt-4 text-gray-600">
             Already have an account?{' '}
             <a href="/login" className="text-blue-600 hover:underline">

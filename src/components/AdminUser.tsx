@@ -3,6 +3,13 @@ import apiClient from '../apiClient/apiClient';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
+
+interface AdminUser {
+    _id : string,
+    email : string,
+    username : string,
+    role :string
+}
 const AdminUser = () => {
     const [user , setUser] = useState([]);
     const [loading , setLoading] = useState(false);
@@ -50,17 +57,17 @@ const AdminUser = () => {
             
             {/* Grid layout for users */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 mt-3'>
-                {user && user.map((item: any) => (
+                {user && user.map((item:AdminUser) => (
                     <div  
                         
                         key={item._id} 
                         className='border border-gray-200 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-all  hover:scale-105 hover:border-blue-500'
                     >   <div className='flex justify-between items-center'>
-                        <h2 className='font-bold text-xl mb-3 text-gray-800'>{item.username}</h2>
+                        <h2   onClick={() => navigate('/userup', {state : item._id})}   className='cursor-pointer font-bold text-xl mb-3 text-gray-800'>{item.username}</h2>
                         <button onClick={() => handleDelete(item._id)}  className='px-3 py-1.5 bg-red-500 text-white rounded-md'>Delete</button>
                         </div>
                         <p className='text-gray-600 mb-2'>
-                            <span  onClick={() => navigate('/userup', {state : item._id})}   className='font-semibold'>Email:</span> {item.email}
+                            <span    className='font-semibold'>Email:</span> {item.email}
                         </p>
                         <p className='text-gray-600'>
                             <span className='font-semibold'>Role:</span> 

@@ -14,59 +14,50 @@ const Navbar = () => {
     const navigate = useNavigate();
 
   return (
-    <nav className="flex justify-between items-center bg-gray-600 text-white px-6 py-4 shadow-md fixed w-full top-0 ">
-      {/* Left side - App Name */}
-      <div className='flex justify-center items-center gap-7'>
-      <div   onClick={() => navigate('/blog')} className="cursor-a text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-               BlogSpace
-      </div>
+      <div className='w-full '>
+        <div className='md:flex hidden justify-between items-center bg-gray-600 py-3 px-6 '>
+            <p onClick={() => navigate('/blog')} className="cursor-a text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+              BlogSpace
+            </p>
 
-      {
-        Admin ?(
-          <button  
-          className='mt-2 px-5 py-1.5 rounded-xl bg-blue-400 text-white hover:bg-blue-400 transition duration-300'
-          onClick={() => navigate('/user')}
-          >Manage User
-          </button>
-        ) :  null
-      } 
-
-      </div>
-      {/* Right side - Username + Create Blog */}
-
-      <div className="md:flex hidden items-center space-x-6">
-        {/* Username */}
-        <span className="text-lg font-medium"> Hii , {username}</span>
-
-        {/* Create Blog Button */}
-        <button
-          onClick={() => window.location.href = '/create'}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all"
-        >
-          New Blog
-        </button>
-      </div>
-
-      <div className='md:hidden flex items-center justify-center '>
-        <button onClick={() => SetisOpen(!isOpen)}>
-          {isOpen ? (
-            <X size={23} className="text-white  cursor-pointer" />
-          ) : (
-            <TextAlignJustify size={23} className="text-white    cursor-pointer" />
-          )}
-        </button>
-        
-      </div>
-
-            {isOpen && (
-        <div className="absolute top-18 left-0 w-full bg-gray-900 text-white flex flex-col items-center space-y-3 py-4 md:hidden shadow-lg transition-all">
-          <p className="text-lg">{username}</p>
-          <button className="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
-            Logout
-          </button>
+            <p className='flex justify-center items-center gap-4'>
+              <p className='text-white'>Hii , {username}</p>
+              <button >
+                {Admin ? (
+                    <button onClick={() => navigate('/user')} className='px-4 py-1.5 text-white bg-green-600 rounded-xl'>Manage User</button>
+                ) : null}
+              </button>
+              <button onClick={() => window.location.href = '/create'} className='px-4 py-1.5 rounded-xl text-white bg-blue-400
+              '>New Blog</button>
+            </p>
         </div>
-      )}
-    </nav>
+
+        <div className='md:hidden flex justify-between items-center p-4 bg-gray-600'>
+            <p  onClick={() => navigate('/blog')} className="cursor-a text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent" >
+              BlogSpace
+            </p>
+
+            <div>
+              {isOpen ? (
+                  <X size={23} onClick={() => SetisOpen(!isOpen)} className='text-white'/>
+              ) : (<TextAlignJustify size={23}  onClick={() => SetisOpen(!isOpen)}   className='text-white'/>)
+            }
+            </div>
+        </div>
+
+        {isOpen && (
+          <div className='flex flex-col justify-center items-center gap-2.5 h-screen  '>
+              <p className='text-black'>Hii , {username}</p>
+              <button >
+                {Admin ? (
+                    <button onClick={() => navigate('/user')} className='px-4 py-1.5 text-white bg-green-600 rounded-xl'>Manage User</button>
+                ) : null}
+              </button>
+              <button onClick={() => window.location.href = '/create'} className='px-4 py-1.5 rounded-xl text-white bg-blue-400
+              '>New Blog</button>
+          </div>
+        )}
+      </div>
   );
 };
 
