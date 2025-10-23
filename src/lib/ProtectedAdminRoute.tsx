@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+import type { ReactNode } from "react";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-const ProtectedAdminRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedAdminRoute = ({ children }: ProtectedRouteProps) => {
   const user = localStorage.getItem("Role");
 
   if (!user || (user !== "ADMIN" && user !== "admin")) {

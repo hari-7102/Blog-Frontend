@@ -21,10 +21,10 @@ const Navbar = () => {
             </p>
 
             <p className='flex justify-center items-center gap-4'>
-              <p className='text-white'>Hii , {username}</p>
+              <span className='text-white'>Hii , {username}</span>
               <button >
                 {Admin ? (
-                    <button onClick={() => navigate('/user')} className='px-4 py-1.5 text-white bg-green-600 rounded-xl'>Manage User</button>
+                    <span onClick={() => navigate('/user')} className='px-4 py-1.5 text-white bg-green-600 rounded-xl'>Manage User</span>
                 ) : null}
               </button>
               <button onClick={() => window.location.href = '/create'} className='px-4 py-1.5 rounded-xl text-white bg-blue-400

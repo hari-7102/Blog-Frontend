@@ -34,16 +34,23 @@ const AdminUser = () => {
     } , []);
 
     const handleDelete = async(id: string): Promise<void> => {
-        try{
-            console.log("id" ,id)
-            const response = await apiClient.delete(`/api/users/${id}`, {} )
-            console.log(response.data);
-            alert("Blog deleted successfully");
-            fetchUsers(); 
-        }catch(error) {
-            console.log(error)
+        const ConformDelete = window.confirm("Are you want to delete the User ")
+        if(ConformDelete) {
+            try{
+                console.log("id" ,id)
+                const response = await apiClient.delete(`/api/users/${id}`, {} )
+                console.log(response.data);
+                alert("Blog deleted successfully");
+                fetchUsers(); 
+            }catch(error) {
+                console.log(error)
+            }
+        } else {
+            
+            window.location.href = "/user"
+
         }
-    }
+        }
   return (
     <div className='min-h-screen bg-gray-50'>
     <Navbar/>
@@ -63,7 +70,7 @@ const AdminUser = () => {
                         key={item._id} 
                         className='border border-gray-200 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-all  hover:scale-105 hover:border-blue-500'
                     >   <div className='flex justify-between items-center'>
-                        <h2   onClick={() => navigate('/userup', {state : item._id})}   className='cursor-pointer font-bold text-xl mb-3 text-gray-800'>{item.username}</h2>
+                        <h2   onClick={() => navigate('/userup', {state : item._id})}   className='cursor-pointer font-bold text-xl mb-3 text-gray-800 hover:text-blue-600'>{item.username}</h2>
                         <button onClick={() => handleDelete(item._id)}  className='px-3 py-1.5 bg-red-500 text-white rounded-md'>Delete</button>
                         </div>
                         <p className='text-gray-600 mb-2'>
