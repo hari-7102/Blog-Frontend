@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {  useNavigate , useLocation } from "react-router-dom";
-import apiClient from '../apiClient/apiClient';
+import { useNavigate, useLocation } from "react-router-dom";
+import apiClient from "../apiClient/apiClient";
 import Navbar from "./Navbar";
-import { FormEvent } from "react";
 
 // Define Blog type
 interface Blog {
@@ -44,8 +43,8 @@ const id = location.state
   }, [id]);
 
   // 📝 Handle update
-  const handleUpdate = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const handleUpdate = async (): Promise<void> => {
+    
 
     const updatedBlog: Blog = { title, content };
     console.log("upateditem", updatedBlog)
