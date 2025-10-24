@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import {  useNavigate , useLocation } from "react-router-dom";
 import apiClient from '../apiClient/apiClient';
 import Navbar from "./Navbar";
+import { FormEvent } from "react";
+
 // Define Blog type
 interface Blog {
   _id?: string;
@@ -62,6 +64,7 @@ const id = location.state
       }
     } catch (error) {
       alert("Error updating blog");
+      navigate('/blog')
       console.error("Error updating blog:", error);
     }
   };
@@ -72,7 +75,6 @@ const id = location.state
 
   return (
     <>
-
     <Navbar/>
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
@@ -120,4 +122,4 @@ const id = location.state
   );
 };
 
-export default UpdateBlog;
+export default UpdateBlog
