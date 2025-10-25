@@ -15,7 +15,7 @@ const Login = () => {
         // Handle login logic here
         const data = {email , password}
         
-        const response = await apiClient.post('http://localhost:3000/login' , data)
+        const response = await apiClient.post('/login' , data)
         console.log(response.data);
         localStorage.setItem('authToken' , response.data.accesstoken)
         localStorage.setItem('User Id' , response.data.user_id)
