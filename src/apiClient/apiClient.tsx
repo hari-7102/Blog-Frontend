@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000/",
+  // baseURL: "http://localhost:3000/",
+  baseURL : "https://blog-backend-lake-sigma.vercel.app/",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
