@@ -16,6 +16,7 @@ interface BlogItem {
 const Blog = () => {
   const navigate = useNavigate();
   const [blog, setBlog] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   // const location = useLocation();
 
@@ -54,9 +55,11 @@ const Blog = () => {
   };
 
   const getData = async () => {
+    
     try {
       const response = await apiClient.get("/api/blog");
       setBlog(response.data);
+      setLoading(false);
       console.log("Protected data:", response.data);
     } catch (error) {
       console.error("Error fetching protected data:", error);
@@ -66,6 +69,10 @@ const Blog = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  } 
 
   return (
     <div>
