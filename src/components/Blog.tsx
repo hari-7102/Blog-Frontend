@@ -50,7 +50,7 @@ const Blog = () => {
         console.error("Error deleting blog:", error);
       }
     } else {
-        window.location.href = "/blog";
+        getData();
     }
   };
 
@@ -70,13 +70,17 @@ const Blog = () => {
     getData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  } 
+
 
   return (
     <div>
       <Navbar />
+          {loading ? (
+        <div className='flex justify-center items-center h-screen'>
+            <p className='text-xl text-gray-600'>Loading...</p>
+        </div>
+     ) : (
+      <div>
       <h1 className="text-3xl font-bold text-center m-5">All Blogs</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-5">
@@ -116,6 +120,8 @@ const Blog = () => {
           Logout
         </button>
       </div>
+      </div>
+      )}
     </div>
   );
 };

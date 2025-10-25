@@ -19,6 +19,7 @@ const AdminUpdate: React.FC = () => {
   // State
   const [email, setEmail] = useState<string>("");
   const [role1, setRole1] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Fetch user by ID
   const fetchUserById = async () => {
@@ -28,6 +29,7 @@ const AdminUpdate: React.FC = () => {
       console.log("Fetched user:", response.data);
       setEmail(response.data.email);
       setRole1(response.data.role);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
@@ -59,6 +61,10 @@ const AdminUpdate: React.FC = () => {
         You are not authorized to view this page
       </p>
     );
+  }
+
+  if (loading) {
+    return <p className="text-center mt-10 text-lg text-gray-500">Loading user...</p>;
   }
 
   return (
