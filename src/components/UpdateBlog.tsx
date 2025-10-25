@@ -14,8 +14,8 @@ interface Blog {
 
 const UpdateBlog: React.FC = () => {
 //   const { id } = useParams<{ id: string }>(); // blog id from URL
-const location = useLocation();
-const id = location.state
+  const location = useLocation();
+  const id = location.state
   console.log("id" , id)
   const navigate = useNavigate();
 
@@ -43,21 +43,21 @@ const id = location.state
   }, [id]);
 
   // 📝 Handle update
-  const handleUpdate = async (): Promise<void> => {
+  
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
     
-
+    const id = location.state
+    
     const updatedBlog: Blog = { title, content };
     console.log("upateditem", updatedBlog)
 
     try {
-      const res = await apiClient.put(`/api/blog/${id}`, {
-        title: updatedBlog.title,
-        content: updatedBlog.content
-      });
+      const res = await apiClient.put(`/api/blog/${id}`, { ...updatedBlog });
 
       if (res.status === 200) {
         alert("Blog updated successfully!");
-        navigate("/blog"); // Redirect to home or blog list
+        setTimeout(() => navigate("/blog"), 100);
       } else {
         alert("Failed to update blog");
       }
