@@ -14,6 +14,7 @@ const UpdateBlog = lazy(() => import('./components/UpdateBlog'))
 const AdminUser = lazy(() => import('./components/AdminUser'))
 const Notfound = lazy(() => import('./components/Notfound'))
 const AdminUpdate = lazy(() => import('./components/AdminUpdate'))
+const ForgotPassword = lazy(() => import('./components/ForgotPassword'))
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/forgot" element={<ForgotPassword/>} />
           <Route path="/blog" element={<Blog/>} />
           <Route path="/create" element={<CreateBlog/>} />
           <Route path="/update" element={<UpdateBlog/>} />

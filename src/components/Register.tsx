@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import apiClient from '../apiClient/apiClient';
 import Img from '../assets/Sign.png'
 
+
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -11,6 +12,7 @@ const Register = () => {
   });
 
   const [showpassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
   const [role] = useState('user');
 
@@ -29,8 +31,14 @@ const Register = () => {
         alert("Registration Successful!.");
         window.location.href = '/login';
     } catch (error) {
-        console.error("Registration failed:", error);
-        alert("Registration failed. Please try again.");
+        console.error('Error registering user:', error);
+        const errorMessage =
+          error.response?.data?.message ||
+          error.message ||
+          'Registration failed. Please try again.';
+
+        setError(errorMessage);
+        // alert("Registration failed. Please try again.");
     }
   };
 
@@ -111,7 +119,11 @@ const Register = () => {
               <option value="moderator">Moderator</option>
           </select>
           </div> */}
+            {error && 
+            
+            <p className="text-gray-700    text-sm mb-4">{error}</p>
 
+            }
 
           <button
             onClick={handleSubmit}

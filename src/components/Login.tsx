@@ -49,7 +49,7 @@ const Login = () => {
           />
         </div>
 
-        <div className="mb-6 relative">
+        <div className="mb-4      relative">
           <label className="block text-lg font-medium text-gray-900 mb-1">
             Password
           </label>
@@ -70,6 +70,10 @@ const Login = () => {
           </button>
         </div> 
 
+        <div className='flex justify-between items-center mb-3.5'>
+        <p  onClick={handleRouter}      className='text-gray-600 hover:underline underline-offset-2 cursor-pointer'>Back to Home </p>
+        <p onClick={() => navigate('/forgot')} className='text-gray-600 hover:underline underline-offset-2 cursor-pointer'>Forgot Password ?</p>
+        </div>
         <button
           type="submit"
           onClick={handlesubmit}
@@ -78,7 +82,7 @@ const Login = () => {
           Log In
         </button>
 
-        <button className='w-full text-white py-2 rounded-md hover:bg-gray-900 bg-gray-700 mt-3'  onClick={handleRouter}>Back to Home</button>
+        {/* <button className='w-full text-white py-2 rounded-md hover:bg-gray-900 bg-gray-700 mt-3'  onClick={handleRouter}>Back to Home</button> */}
 
         <p className="text-smd text-center mt-4 text-gray-800">
           Don't have an account?{' '}
