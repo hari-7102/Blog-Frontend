@@ -20,27 +20,33 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Add form validation and API call
-    console.log('Form submitted:', formData, role);
-    const data = { ...formData, role };
-    try {
-        const response = await apiClient.post('/api/users' , data);
-        console.log(response.data);
-        alert("Registration Successful!.");
-        window.location.href = '/login';
-    } catch (error) {
-        console.error('Error registering user:', error);
-        const errorMessage =
-          error.response?.data?.message ||
-          error.message ||
-          'Registration failed. Please try again.';
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  console.log('Form submitted:', formData, role);
 
-        setError(errorMessage);
-        // alert("Registration failed. Please try again.");
+  const data = { ...formData, role };
+
+  try {
+    const response = await apiClient.post('/api/users', data);
+    console.log(response.data);
+    alert("Registration Successful!");
+    window.location.href = '/login';
+  } catch (error: unknown) {
+    console.error('Error registering user:', error);
+
+    let errorMessage = 'Registration failed. Please try again.';
+
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
     }
-  };
+
+    setError(errorMessage);
+  }
+};
+
 
   return (
     <div className="w-full  min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-300 to-purple-300">
@@ -121,7 +127,7 @@ const Register = () => {
           </div> */}
             {error && 
             
-            <p className="text-gray-700    text-sm mb-4">{error}</p>
+            <p className="text-red-600    text-sm mb-4">{error}</p>
 
             }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 import { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, CheckCircle } from 'lucide-react';
@@ -13,22 +13,13 @@ const ForgotPassword = () => {
     password: '',
     confirmPassword: ''
   });
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
 
-  const handleSubmit = async(e) => {
+
+  const handleSubmit = async() => {
     
-    e.preventDefault();
+    // e.preventDefault();
     const data = {
       email: formData.email,
       password: formData.password,
@@ -76,8 +67,8 @@ const ForgotPassword = () => {
                     id="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleChange}
-                    className={`w-full pl-10 pr-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
+                    onChange={(e)=> setFormData({ ...formData, email: e.target.value })}
+                    className={`w-full pl-10 pr-4 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
                     placeholder="you@example.com"
                     />
                 </div>
@@ -95,8 +86,8 @@ const ForgotPassword = () => {
                     id="password"
                     name="password"
                     value={formData.password}
-                    onChange={handleChange}
-                    className={`w-full pl-10 pr-12 py-3 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    className={`w-full pl-10 pr-12 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
                     placeholder="Enter new password"
                     />
                     <button
@@ -121,8 +112,8 @@ const ForgotPassword = () => {
                     id="confirmPassword"
                     name="confirmPassword"
                     value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className={`w-full pl-10 pr-12 py-3 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
+                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                    className={`w-full pl-10 pr-12 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all`}
                     placeholder="Confirm new password"
                     />
                     <button
