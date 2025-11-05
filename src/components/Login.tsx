@@ -18,12 +18,13 @@ const Login = () => {
     const handlesubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         // Handle login logic here
+        setLoading(true);
         try{
         
         const data = {email , password}
         
         const response = await apiClient.post('/login' , data)
-        setLoading(true);
+        
         console.log(response.data);
         localStorage.setItem('authToken' , response.data.accesstoken)
         localStorage.setItem('User Id' , response.data.user_id)
