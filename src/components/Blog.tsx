@@ -115,7 +115,7 @@ const Blog = () => {
       <div className="flex justify-center items-center mt-6">
         <button
           onClick={handleLogout}
-          className="cursor-pointer   text-center px-5 py-2 bg-gray-600 text-white rounded-xl"
+          className="cursor-pointer my-9  text-center px-5 py-2 bg-gray-600 text-white rounded-xl"
         >
           Logout
         </button>
