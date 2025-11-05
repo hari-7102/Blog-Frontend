@@ -3,26 +3,48 @@ import React , { useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../apiClient/apiClient';
 import Img from '../assets/Login.png'
+import { CircleDashed } from 'lucide-react';
+
+
 const Login = () => {
 
   const navigate = useNavigate();
     const [email , setEmail] = React.useState("");
     const [password , setPassword] = React.useState("");
     const [showPassword , setShowPassword] = useState(false);
+    const [loading , setLoading] = useState(false);
+    const [error , setError] = useState("");
 
     const handlesubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         // Handle login logic here
+        try{
+        
         const data = {email , password}
         
         const response = await apiClient.post('/login' , data)
+        setLoading(true);
         console.log(response.data);
         localStorage.setItem('authToken' , response.data.accesstoken)
         localStorage.setItem('User Id' , response.data.user_id)
         localStorage.setItem('Role' , response.data.role)
         localStorage.setItem('Username' , response.data.username)
         window.location.href = '/blog';
+        
+        } catch (error: unknown) {
+          console.error('Error registering user:', error);
 
+          let errorMessage = 'Registration failed. Please try again.';
+
+          if (error && typeof error === 'object' && 'response' in error) {
+            const axiosError = error as { response?: { data?: { message?: string } } };
+            errorMessage = axiosError.response?.data?.message || errorMessage;
+          } else if (error instanceof Error) {
+            errorMessage = error.message;
+          }
+
+          setError(errorMessage);
+        }
     }
 
     const handleRouter = () => {
@@ -74,13 +96,19 @@ const Login = () => {
         <p  onClick={handleRouter}      className='text-gray-600 hover:underline underline-offset-2 cursor-pointer'>Back to Home </p>
         <p onClick={() => navigate('/forgot')} className='text-gray-600 hover:underline underline-offset-2 cursor-pointer'>Forgot Password ?</p>
         </div>
-        <button
-          type="submit"
-          onClick={handlesubmit}
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:scale-105  transition duration-300 cursor-pointer"
-        >
-          Log In
-        </button>
+
+        {error && <p className='text-red-600 text-center mb-2'>{error}</p>}
+
+        <div className='flex justify-center items-center '>
+           {loading ? 
+           <button disabled className='w-full text-white py-2 rounded-md hover:bg-gray-900 bg-gray-700 mt-3 flex justify-center items-center gap-2'>
+            <CircleDashed className='animate-spin'/> Loading...
+            </button>
+            :
+           <button type="submit" onClick={handlesubmit} className='w-full text-white py-2 rounded-md hover:bg-blue-700 bg-blue-600 mt-3'>Login</button>
+           }
+        </div>
+
 
         {/* <button className='w-full text-white py-2 rounded-md hover:bg-gray-900 bg-gray-700 mt-3'  onClick={handleRouter}>Back to Home</button> */}
 
@@ -90,7 +118,7 @@ const Login = () => {
             Register
           </a>
         </p>
-      </form>
+      </form>     
       </div>
 
       <div className='w-1/2 h-full md:flex hidden items-center justify-center'>
