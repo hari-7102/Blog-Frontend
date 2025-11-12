@@ -13,6 +13,7 @@ const Register = () => {
 
   const [showpassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading , setLoading] = useState(false);
 
   const [role] = useState('user');
 
@@ -27,6 +28,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   const data = { ...formData, role };
 
   try {
+    setLoading(true);
     const response = await apiClient.post('/api/users', data);
     console.log(response.data);
     alert("Registration Successful!");
@@ -42,7 +44,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     } else if (error instanceof Error) {
       errorMessage = error.message;
     }
-
+    setLoading(false);
     setError(errorMessage);
   }
 };
@@ -130,13 +132,17 @@ const handleSubmit = async (e: React.FormEvent) => {
             <p className="text-red-600    text-sm mb-4">{error}</p>
 
             }
-
-          <button
-            onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 cursor-pointer"
-          >
-            Register
-          </button>
+            
+            {loading ? 
+              <p className="text-blue-600    text-sm mb-4">Registering...</p>
+            :
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 cursor-pointer"
+            >
+              Register
+            </button>
+          }
             <button onClick={() => window.location.href='/'} className='w-full bg-black text-white rounded-md py-1.5  mt-2'>
               Back 
             </button>
