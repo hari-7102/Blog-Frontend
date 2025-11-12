@@ -133,7 +133,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 cursor-pointer"
           >
             Register
           </button>

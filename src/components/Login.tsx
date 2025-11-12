@@ -45,6 +45,10 @@ const Login = () => {
           }
 
           setError(errorMessage);
+          setTimeout(() => {
+            setError("");
+          }, 4000);
+          setLoading(false);
         }
     }
 
