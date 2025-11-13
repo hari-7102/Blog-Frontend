@@ -5,6 +5,8 @@ import Navbar from "./Navbar";
 import { UserCircle, Mail, Shield, Save, ArrowLeft } from 'lucide-react';
 
 
+
+
 const AdminUpdate: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
