@@ -106,7 +106,7 @@ const Blog = () => {
               </div>
               <p className="text-gray-700 mb-3 line-clamp-3">{item.content}</p>
               <p className="text-sm text-gray-500">
-                Author: {item.author?.username || "Unknown"}
+                Published By : {item.author?.username || "Unknown"}
               </p>
             </div>
           ))}
