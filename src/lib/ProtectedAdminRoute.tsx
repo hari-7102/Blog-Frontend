@@ -7,6 +7,12 @@ interface ProtectedRouteProps {
 
 const ProtectedAdminRoute = ({ children }: ProtectedRouteProps) => {
   const user = localStorage.getItem("Role");
+  const authToken = localStorage.getItem("authToken");
+
+  if (!authToken) {
+    return <Navigate to="/home" />;
+  }
+  
 
   if (!user || (user !== "ADMIN" && user !== "admin")) {
     return <Navigate to="/404" />;

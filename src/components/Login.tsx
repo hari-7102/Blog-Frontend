@@ -30,7 +30,7 @@ const Login = () => {
         localStorage.setItem('User Id' , response.data.user_id)
         localStorage.setItem('Role' , response.data.role)
         localStorage.setItem('Username' , response.data.username)
-        window.location.href = '/blog';
+        window.location.href = '/';
         
         } catch (error: unknown) {
           console.error('Error registering user:', error);
