@@ -114,7 +114,7 @@ const UpdateBlog: React.FC = () => {
             Update Blog
           </button>
         </form>
-        <button onClick={() => navigate('/blog')}    className="px-5 py-2 mt-3 text-white bg-gray-700 rounded-xl">Back to Blog</button>
+        <button onClick={() => navigate('/')}    className="px-5 py-2 mt-3 text-white bg-gray-700 rounded-xl">Back to Blog</button>
       </div>
     </div>
     </>

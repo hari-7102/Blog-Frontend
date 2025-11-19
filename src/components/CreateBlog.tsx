@@ -84,7 +84,7 @@ const CreateBlog = () => {
           </button>
         </form>
 
-        <button    onClick={() => navigate("/blog") }   className="px-5 py-2 mt-3 bg-gray-600 text-white rounded-xl">
+        <button    onClick={() => navigate("/") }   className="px-5 py-2 mt-3 bg-gray-600 text-white rounded-xl">
             Back to Blogs
         </button>
       </div>

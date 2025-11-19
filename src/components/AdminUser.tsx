@@ -91,7 +91,7 @@ const AdminUser = () => {
             {/* Back button */}
             <div className='flex justify-center'>
                 <button 
-                    onClick={() => navigate('/blog')} 
+                    onClick={() => navigate('/')} 
                     className='px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg transition-colors shadow-md'
                 >
                     ← Back to Blog
