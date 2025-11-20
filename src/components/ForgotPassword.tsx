@@ -29,8 +29,8 @@ const ForgotPassword = () => {
     try{
         const reponse = await apiClient.post('/forgotpassword',data)
         console.log(reponse.data);
-        // alert("Password Reset Successful!.");
-        // window.location.href = '/login';
+        alert("Password Reset Successful!.");
+        window.location.href = '/login';
     }catch (error: unknown) {
           console.error('Error registering user:', error);
 
