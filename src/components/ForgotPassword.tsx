@@ -7,6 +7,7 @@ import apiClient from '../apiClient/apiClient';
 
 const ForgotPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -28,11 +29,24 @@ const ForgotPassword = () => {
     try{
         const reponse = await apiClient.post('/forgotpassword',data)
         console.log(reponse.data);
-        alert("Password Reset Successful!.");
-        window.location.href = '/login';
-    }catch(err){
-      console.log("Error:",err)
-    }
+        // alert("Password Reset Successful!.");
+        // window.location.href = '/login';
+    }catch (error: unknown) {
+          console.error('Error registering user:', error);
+
+          let errorMessage = 'Registration failed. Please try again.';
+
+          if (error && typeof error === 'object' && 'response' in error) {
+            const axiosError = error as { response?: { data?: { message?: string } } };
+            errorMessage = axiosError.response?.data?.message || errorMessage;
+          } else if (error instanceof Error) {
+            errorMessage = error.message;
+          }
+
+          setError(errorMessage);
+          
+          
+        }
   }
 
 
@@ -55,7 +69,7 @@ const ForgotPassword = () => {
                 <p className="text-gray-600">Enter your details to reset your password</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            
                 <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-gray-700 block">
                     Email Address
@@ -72,6 +86,8 @@ const ForgotPassword = () => {
                     placeholder="you@example.com"
                     />
                 </div>
+
+                
                 
                 </div>
 
@@ -127,14 +143,15 @@ const ForgotPassword = () => {
                 
                 </div>
 
+                {error && <p className='text-red-600 text-center mb-2'>{error}</p>}
+
                 <button
-                type="submit"
+                 onClick={handleSubmit}
                 className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform hover:scale-[1.02] transition-all shadow-lg"
                 >
                 Reset Password
                 </button>
-            </form>
-
+            
             <div className="text-center">
                 <a href="/login" className="text-sm text-purple-600 hover:text-purple-700 font-medium">
                 Back to Login
