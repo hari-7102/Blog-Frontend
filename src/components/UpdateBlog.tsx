@@ -57,7 +57,7 @@ const UpdateBlog: React.FC = () => {
 
       if (res.status === 200) {
         alert("Blog updated successfully!");
-        setTimeout(() => navigate("/blog"), 100);
+        setTimeout(() => navigate("/"), 100);
       } else {
         alert("Failed to update blog");
       }

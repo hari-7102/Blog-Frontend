@@ -27,7 +27,7 @@ const CreateBlog = () => {
     console.log(resposne.data);
     setBlog([...blog , resposne.data]);
     // alert("Blog Created Successfully!");
-    navigate("/blog");
+    navigate("/");
     // Clear form fields
 
     setTitle("");
