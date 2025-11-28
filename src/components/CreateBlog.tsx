@@ -15,16 +15,19 @@ const CreateBlog = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [blog , setBlog] = useState<string[]>([]);
+  const [loading , setLoading] = useState<boolean>(false);
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>):Promise<void> => {
     e.preventDefault();
 
-
+    setLoading(true);
     const newBlog: Blog = { title, content };
     console.log("Blog Submitted:", newBlog);
-
+    
     const resposne = await apiClient.post('/api/blog' , newBlog);
+
     console.log(resposne.data);
+    setLoading(false);
     setBlog([...blog , resposne.data]);
     // alert("Blog Created Successfully!");
     navigate("/");
@@ -34,7 +37,7 @@ const CreateBlog = () => {
     setContent("");
   };
 
-  return (
+  return (   
     <>
     <Navbar/>
     <div className="flex justify-center items-start pt-16 h-screen bg-gray-100 overflow-hidden">
@@ -76,12 +79,24 @@ const CreateBlog = () => {
           </div>
 
           {/* Submit Button */}
+          {
+            loading ? (
+              <button
+                type="button" 
+                className="w-full bg-gray-700 text-white py-2 rounded-lg cursor-not-allowed "
+                disabled
+              >
+                Publishing...
+              </button>
+            ) : 
+          
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-all"
           >
             Publish Blog
           </button>
+        }
         </form>
 
         <button    onClick={() => navigate("/") }   className="px-5 py-2 mt-3 bg-gray-600 text-white rounded-xl">
