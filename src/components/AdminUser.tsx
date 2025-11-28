@@ -40,7 +40,7 @@ const AdminUser = () => {
                 console.log("id" ,id)
                 const response = await apiClient.delete(`/api/users/${id}`, {} )
                 console.log(response.data);
-                alert("Blog deleted successfully");
+                alert("User deleted successfully");
                 fetchUsers(); 
             }catch(error) {
                 console.log(error)

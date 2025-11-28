@@ -22,7 +22,7 @@ const AdminUpdate: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [role1, setRole1] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [loading2, setLoading2] = useState<boolean>(false);
   // Fetch user by ID
   const fetchUserById = async () => {
     
@@ -43,6 +43,7 @@ const AdminUpdate: React.FC = () => {
 
   // Update user
   const handleUpdate = async (): Promise<void> => {
+    setLoading2(true);
     if (!id) return;
     const data = { email, role: role1 };
     try {
@@ -50,6 +51,7 @@ const AdminUpdate: React.FC = () => {
         withCredentials: true,
       });
       console.log("Update response:", response.data);
+      setLoading2(false);
       alert("User updated successfully");
       navigate("/user");
     } catch (error) {
@@ -131,6 +133,17 @@ const AdminUpdate: React.FC = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                {
+                  loading2 ? (
+                    <button
+                      type="button"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg cursor-not-allowed "
+                      disabled
+                    >
+                      Updating...
+                    </button>
+                  ) :
+                
                 <button
                   onClick={handleUpdate}
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02]"
@@ -138,7 +151,8 @@ const AdminUpdate: React.FC = () => {
                   <Save className="w-4 h-4" />
                   Update User
                 </button>
-
+                
+                }
                 <button
                   onClick={() => navigate('/user')}
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02]"
