@@ -22,6 +22,7 @@ const UpdateBlog: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [loading2, setLoading2] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -46,7 +47,7 @@ const UpdateBlog: React.FC = () => {
   
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    
+    setLoading2(true);
     const id = location.state
     
     const updatedBlog: Blog = { title, content };
@@ -61,6 +62,7 @@ const UpdateBlog: React.FC = () => {
       } else {
         alert("Failed to update blog");
       }
+      setLoading2(false);
     } catch (error) {
       alert("Error updating blog");
       navigate('/blog')
@@ -107,12 +109,24 @@ const UpdateBlog: React.FC = () => {
           </div>
 
           {/* Submit Button */}
+          {
+            loading2 ? (
+              <button
+                type="button"
+                className="w-full bg-gray-700 text-white py-2 rounded-lg cursor-not-allowed "
+                disabled
+              >
+                Updating...
+              </button>
+            ) : 
+          
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-all"
           >
             Update Blog
           </button>
+          }
         </form>
         <button onClick={() => navigate('/')}    className="px-5 py-2 mt-3 text-white bg-gray-700 rounded-xl">Back to Blog</button>
       </div>
