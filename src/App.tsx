@@ -3,6 +3,7 @@ import { BrowserRouter as Router , Routes , Route } from "react-router-dom"
 import {lazy, Suspense } from "react"
 import ProtectedAdminRoute from "./lib/ProtectedAdminRoute"
 
+
 const Home = lazy(() => import('./pages/Home'))
 const Login = lazy(() => import('./components/Login'))
 const Register = lazy(() => import('./components/Register'))
