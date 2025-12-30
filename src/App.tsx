@@ -17,6 +17,8 @@ const ForgotPassword = lazy(() => import('./components/ForgotPassword'))
 
 const App = () => {
 
+  
+
   return (
     <div>
       <Router>
