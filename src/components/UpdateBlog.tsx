@@ -20,7 +20,7 @@ const UpdateBlog: React.FC = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>("");  
   const [loading, setLoading] = useState<boolean>(true);
   const [loading2, setLoading2] = useState<boolean>(false);
 
@@ -94,7 +94,7 @@ const UpdateBlog: React.FC = () => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
-          </div>
+          </div>   
 
           {/* Content Input */}
           <div>
@@ -136,8 +136,3 @@ const UpdateBlog: React.FC = () => {
 };
 
 export default UpdateBlog
-
-
-
-
-

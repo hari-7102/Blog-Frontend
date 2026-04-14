@@ -14,11 +14,11 @@ const ProtectedAdminRoute = ({ children }: ProtectedRouteProps) => {
   }
   
 
-  if (!user || (user !== "ADMIN" && user !== "admin")) {
+  if (user === null || (user !== "ADMIN" && user !== "admin")) {
     return <Navigate to="/404" />;
   }
 
   return <>{children}</>;
-};
+};  
 
 export default ProtectedAdminRoute;

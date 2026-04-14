@@ -33,7 +33,7 @@ const Blog = () => {
     localStorage.removeItem("Username");
     localStorage.removeItem("User Id");
     localStorage.removeItem("Role");
-    window.location.href = "/";
+    window.location.href = "/home";   
   };
 
   const handleDelete = async (id: string): Promise<void> => {
