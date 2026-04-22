@@ -6,6 +6,7 @@ import ProtectedAdminRoute from "./lib/ProtectedAdminRoute"
 
 
 
+
 const Home = lazy(() => import('./pages/Home'))
 const Login = lazy(() => import('./components/Login'))
 const Register = lazy(() => import('./components/Register'))
